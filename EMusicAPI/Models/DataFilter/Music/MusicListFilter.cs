@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EMusicAPI.Models.DataFilter.Music
 {
-    public class MusicListFilter : PaginationFilter
+   public class MusicListFilter : PaginationFilter
     {
         public MusicListFilter(int pageNumber, int pageSize)
         {
@@ -17,5 +17,6 @@ namespace EMusicAPI.Models.DataFilter.Music
         public string Name { get; set; }
         public string OwnerFullName { get; set; }
         public string UserId { get; set; }
+        public string SearchParams { get; set; }
     }
 }

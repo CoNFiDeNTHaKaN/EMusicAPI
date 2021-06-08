@@ -113,7 +113,7 @@ namespace EMusicAPI.Services
 
         }
 
-        public async Task<PagedResponse<List<Music>>> GetListByFilterAsync(MusicListFilter filter)
+       public async Task<PagedResponse<List<Music>>> GetListByFilterAsync(MusicListFilter filter)
         {
 
             IQueryable<Music> query = _db.Musics;
@@ -121,15 +121,23 @@ namespace EMusicAPI.Services
 
             if (!string.IsNullOrEmpty(filter.Name))
                 query = query.Where(p => p.Name.Contains(filter.Name));
+            
+            if (!string.IsNullOrEmpty(filter.OwnerFullName))
+                query = query.Where(p => p.OwnerFullName.Contains(filter.OwnerFullName));
+            
+            if (!string.IsNullOrEmpty(filter.SearchParams))
+                query = query.Where(p => p.Name.Contains(filter.SearchParams) ||
+                                         p.OwnerFullName.Contains(filter.SearchParams)                                          
+                                         );
 
 
             var pagedData = await query.OrderByDescending(p => p.Name)
                             .Skip((filter.PageNumber - 1) * filter.PageSize)
                             .Take(filter.PageSize)
-                            .ToListAsync(); //Prepares data list as descendant for pagination.
+                            .ToListAsync();
             var totalRecords = await query.CountAsync();
 
-            var pagedReponse = PaginationHelper.CreatePagedReponse<Music>(pagedData, filter, totalRecords, null, ""); 
+            var pagedReponse = PaginationHelper.CreatePagedReponse<Music>(pagedData, filter, totalRecords, null, "");
             return pagedReponse;
 
         }

@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{E11B92FF-D0AC-465B-BD6A-2F35A55AE517}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="EMusicAPI/Services/UserService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EMusicAPI/Services/MusicService.cs">
     <Files>
-      <File FileName="EMusicAPI/Services/MusicService.cs" Line="278" Column="40" />
-      <File FileName="EMusicAPI/Services/QueueService.cs" Line="84" Column="66" />
-      <File FileName="EMusicAPI/Services/UriService.cs" Line="1" Column="1" />
+      <File FileName="EMusicAPI/Services/MusicService.cs" Line="278" Column="1" />
+      <File FileName="EMusicAPI/Services/QueueService.cs" />
+      <File FileName="EMusicAPI/Services/UriService.cs" />
       <File FileName="EMusicAPI/Services/UserService.cs" Line="155" Column="74" />
     </Files>
     <Pads>
@@ -11,8 +11,13 @@
         <State name="__root__">
           <Node name="EMusicAPI" expanded="True">
             <Node name="EMusicAPI" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="DataFilter" expanded="True">
+                  <Node name="Music" expanded="True" />
+                </Node>
+              </Node>
               <Node name="Services" expanded="True">
-                <Node name="UserService.cs" selected="True" />
+                <Node name="MusicService.cs" selected="True" />
               </Node>
             </Node>
           </Node>

@@ -18,5 +18,6 @@ namespace EMusicAPI.Models.DataFilter.Music
         public string OwnerFullName { get; set; }
         public string UserId { get; set; }
         public string SearchParams { get; set; }
+
     }
 }

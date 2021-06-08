@@ -29,12 +29,12 @@ namespace EMusicAPI.Services
         {
             var factory = new ConnectionFactory()
             {
-                Uri = new Uri(_configuration["MessageQueue:RabbitMQ"])
+                Uri = new Uri(_configuration["MessageQueue:RabbitMQ"]) //Initializes the configuration of RabbitMQ
             };
 
             using (var connection = factory.CreateConnection())
             {
-                using (var channel = connection.CreateModel())
+                using (var channel = connection.CreateModel()) //Opens a connection to the RabbitMQ CloudAMQ
                 {
                     channel.QueueDeclare(queue: "NotifTest2",
                                          durable: false,
@@ -50,7 +50,7 @@ namespace EMusicAPI.Services
                                          routingKey: "NotifTest2",
                                          basicProperties: null,
                                           body: body
-                                                    );
+                                                    ); //Sends notification.
 
                 }
             }
@@ -61,12 +61,12 @@ namespace EMusicAPI.Services
         {
             var factory = new ConnectionFactory()
             {
-                Uri = new Uri(_configuration["MessageQueue:RabbitMQ"])
+                Uri = new Uri(_configuration["MessageQueue:RabbitMQ"]) //Initializes the configuration of RabbitMQ
             };
 
             using (var connection = factory.CreateConnection())
             {
-                using (var channel = connection.CreateModel())
+                using (var channel = connection.CreateModel()) //Opens a connection to the RabbitMQ CloudAMQ
                 {
 
                     channel.QueueDeclare(queue: "NotifTest2",
@@ -87,7 +87,7 @@ namespace EMusicAPI.Services
 
                     channel.BasicConsume(queue: "NotifTest2",
                                          autoAck: true,
-                                         consumer: consumer);
+                                         consumer: consumer); //Gets the notification.
 
                 }
             }

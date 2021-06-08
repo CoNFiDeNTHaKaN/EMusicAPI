@@ -32,8 +32,8 @@ namespace EMusicAPI.Services
         }
         public async Task<Response<Music>> CreateAsync(Music Music)
         {
-            _db.Musics.Add(Music);
-            await _db.SaveChangesAsync();
+            _db.Musics.Add(Music); //Initializes adding a song.
+            await _db.SaveChangesAsync(); //Saves database.
 
 
             return new Response<Music>(Music);
@@ -41,9 +41,9 @@ namespace EMusicAPI.Services
 
         public async Task<Response<bool>> DeleteAsync(Guid Id)
         {
-            var Music = await _db.Musics.Where(p => p.Id == Id).FirstOrDefaultAsync();
-            var result = _db.Musics.Remove(Music);
-            await _db.SaveChangesAsync();
+            var Music = await _db.Musics.Where(p => p.Id == Id).FirstOrDefaultAsync(); //Finds the song from the id.
+            var result = _db.Musics.Remove(Music); //Initializes to remove.
+            await _db.SaveChangesAsync(); //Saves database.
 
 
 
@@ -57,15 +57,15 @@ namespace EMusicAPI.Services
             IQueryable<Music> query = _db.Musics;
 
             if (!string.IsNullOrEmpty(filter.Id))
-                query = query.Where(p => p.Id == Guid.Parse(filter.Id));
+                query = query.Where(p => p.Id == Guid.Parse(filter.Id)); //Apply filter for the Id.
             if (!string.IsNullOrEmpty(filter.Name))
-                query = query.Where(p => p.Name.Contains(filter.Name));
+                query = query.Where(p => p.Name.Contains(filter.Name)); //Apply filter for the Name.
 
             var response = await query.FirstOrDefaultAsync();
 
             if (!(response is null))
             {
-                var existUserMusic = await _db.UserMusic.Where(p => p.MusicId == response.Id).FirstOrDefaultAsync();
+                var existUserMusic = await _db.UserMusic.Where(p => p.MusicId == response.Id).FirstOrDefaultAsync(); //Finds the related song.
                 if (!(existUserMusic is null) && !existUserMusic.IsViewed)
                 {
                     existUserMusic.IsViewed = true;
@@ -93,12 +93,12 @@ namespace EMusicAPI.Services
         {
 
 
-            IQueryable<UserMusic> query = _db.UserMusic;
+            IQueryable<UserMusic> query = _db.UserMusic; //Initializes UserMusic database.
             var response = new UserMusicDto();
             if (!string.IsNullOrEmpty(filter.Id))
                 query = query.Where(p => p.MusicId == Guid.Parse(filter.Id));
 
-            var data = await query.Include(p => p.Music).FirstOrDefaultAsync();
+            var data = await query.Include(p => p.Music).FirstOrDefaultAsync(); //Checks if the related song exists in the UserMusic database.
             if (!(data is null))
             {
 
@@ -126,10 +126,10 @@ namespace EMusicAPI.Services
             var pagedData = await query.OrderByDescending(p => p.Name)
                             .Skip((filter.PageNumber - 1) * filter.PageSize)
                             .Take(filter.PageSize)
-                            .ToListAsync();
+                            .ToListAsync(); //Prepares data list as descendant for pagination.
             var totalRecords = await query.CountAsync();
 
-            var pagedReponse = PaginationHelper.CreatePagedReponse<Music>(pagedData, filter, totalRecords, null, "");
+            var pagedReponse = PaginationHelper.CreatePagedReponse<Music>(pagedData, filter, totalRecords, null, ""); 
             return pagedReponse;
 
         }
@@ -164,7 +164,7 @@ namespace EMusicAPI.Services
                     p.IsFavorite = data.IsFavorite;
                 }
 
-            });
+            }); 
 
             var pagedReponse = PaginationHelper.CreatePagedReponse<UserMusicDto>(pagedData, filter, totalRecords, null, "");
             return pagedReponse;
@@ -280,9 +280,9 @@ namespace EMusicAPI.Services
                     existMusic.IsViewed = userMusic.IsViewed;
                     existMusic.IsFavorite = userMusic.IsFavorite;
                     existMusic.IsPurchashing = userMusic.IsPurchashing;
-                    _db.UserMusic.Update(existMusic);
+                    _db.UserMusic.Update(existMusic); //Initializes updating of the related song info.
 
-                    await _db.SaveChangesAsync();
+                    await _db.SaveChangesAsync();//Updates..
                     return new Response<UserMusic>(userMusic);
                 }
 

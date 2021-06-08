@@ -66,7 +66,7 @@ namespace EMusicAPI.Services
             try
             {
 
-                var user = await _userDb.Users.Where(p => p.Email == model.Email && p.IsDeleted == false).FirstOrDefaultAsync();
+                var user = await _userDb.Users.Where(p => p.Email == model.Email && p.IsDeleted == false).FirstOrDefaultAsync(); //Checks if user exists.
 
                 if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
                 {
@@ -108,7 +108,7 @@ namespace EMusicAPI.Services
                         Roles = userRoles.ToList(),
 
 
-                    };
+                    }; // Response info containing Token.
                     return response;
 
                 }
@@ -133,7 +133,7 @@ namespace EMusicAPI.Services
 
             try
             {
-                var userExists = await userManager.FindByEmailAsync(model.Email);
+                var userExists = await userManager.FindByEmailAsync(model.Email); //Checks if user exists.
                 if (userExists != null)
                     return null;
 
@@ -152,7 +152,7 @@ namespace EMusicAPI.Services
                 var result = await userManager.CreateAsync(user, model.Password);
 
                
-                await _db.SaveChangesAsync();
+                await _db.SaveChangesAsync(); //Creates a new user in db.
 
          
 

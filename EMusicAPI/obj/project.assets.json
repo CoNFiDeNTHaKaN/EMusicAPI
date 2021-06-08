@@ -6909,26 +6909,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tacet\\.nuget\\packages\\": {}
+    "/Users/hakansamci/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projects\\E-MusicAPI\\EMusicAPI\\EMusicAPI\\EMusicAPI.csproj",
+      "projectUniqueName": "/Users/hakansamci/Documents/Vero/EMusicAPI/EMusicAPI/EMusicAPI.csproj",
       "projectName": "EMusicAPI",
-      "projectPath": "D:\\projects\\E-MusicAPI\\EMusicAPI\\EMusicAPI\\EMusicAPI.csproj",
-      "packagesPath": "C:\\Users\\Tacet\\.nuget\\packages\\",
-      "outputPath": "D:\\projects\\E-MusicAPI\\EMusicAPI\\EMusicAPI\\obj\\",
+      "projectPath": "/Users/hakansamci/Documents/Vero/EMusicAPI/EMusicAPI/EMusicAPI.csproj",
+      "packagesPath": "/Users/hakansamci/.nuget/packages/",
+      "outputPath": "/Users/hakansamci/Documents/Vero/EMusicAPI/EMusicAPI/obj/",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Tacet\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/hakansamci/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7026,7 +7028,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }
